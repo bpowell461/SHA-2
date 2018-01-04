@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public abstract class EncryptionFundamental
 {
- public final SecureRandom randomNum = new SecureRandom();
+ public final SecureRandom randomNum = new SecureRandom(); //Random Used for RSA
 
  public BigInteger StringToInt(String message)
  {
