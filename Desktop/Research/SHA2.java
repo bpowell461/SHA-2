@@ -51,7 +51,11 @@ public class SHA2 extends EncryptionFundamental
      M.append("1"); //add "1" bit to end of string
      String binL = "0" + Integer.toBinaryString(l);
      //l + k + 1 + 64 is a multiple of 512   M.length()%512==0;
-     while(((l+1+k+8)%512)!=0)
+     while(binL.length()!=64) //binL must be a 64-bit Big Endian Number
+     {
+       binL = "0" + binL;
+     }
+     while(((l+1+k+64)%512)!=0)
      {
        M.append("0");
        k++;
