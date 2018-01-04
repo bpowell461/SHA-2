@@ -15,13 +15,13 @@ public class SHA2 extends EncryptionFundamental
   
    public SHA2(String message)
    {
-     System.out.println("Message: " + message);
+     //System.out.println("Message: " + message);
      M.append(StringToBit(message));
-     System.out.println("Binary Message: " + M);
+     //System.out.println("Binary Message: " + M);
      int l = message.length()*8; //length of String message in bits
      padMessage(M, l);
-     System.out.println("Padded Message: " + M);
-     debugLength();
+     //System.out.println("Padded Message: " + M);
+     //debugLength();
     // byte[] blocks = new byte[16]; //Blocks of 32-Bit Words divided into 16 blocks M(t)(0-15)
     
      StringBuffer[] chunks = new StringBuffer[(M.length()/512)];
