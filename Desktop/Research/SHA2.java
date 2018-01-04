@@ -11,69 +11,75 @@ public class SHA2 extends EncryptionFundamental
   private int[] initH = {0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19};
   //Array of Initial Hashes
   
-  private StringBuffer digest;
+  private StringBuffer digest = new StringBuffer();
   
    public SHA2(String message)
    {
-     //System.out.println("Message: " + message);
+     System.out.println("Message: " + message);
      M.append(StringToBit(message));
-     //System.out.println("Binary Message: " + M);
-     int l = M.length(); //length of String M in bits
-     int k = 448-(l+1);  //Number of "0" bits 
-     padMessage(M, k, l);
-     //System.out.println("Padded Message: " + M);
-     //debugLength();
-     String[] blocks = new String[16]; //Blocks of 32-Bit Words divided into 16 blocks M(t)(0-15)
-     parseMessage(M, blocks);
-     String[] W = new String[64];
-     //debugArray(blocks);
-     processHash(blocks, W);
+     System.out.println("Binary Message: " + M);
+     int l = message.length()*8; //length of String message in bits
+     padMessage(M, l);
+     System.out.println("Padded Message: " + M);
+     debugLength();
+    // byte[] blocks = new byte[16]; //Blocks of 32-Bit Words divided into 16 blocks M(t)(0-15)
+    
+     StringBuffer[] chunks = new StringBuffer[(M.length()/512)];
+     for(int i=0; i<chunks.length; i++)
+     {
+       chunks[i] = new StringBuffer(M.substring(0, 512));
+       M.delete(0, 512);
+     }
      
-     compressionFunction(initH, W);
-     generateDigest(initH, digest);
+     int[] W = new int[64];
+     
+     for(int i=0; i<chunks.length; i++)
+     {
+     parseMessage(chunks[i], W);
+     processHash(W);
+     compressionFunction(W);
+     }
+     generateDigest();
      
      //System.out.println(toString());
      resetHash();
    }
    
-   public void padMessage(StringBuffer M, int k, int l)
+   public void padMessage(StringBuffer M, int l)
    {
+     int k=0; //K 0 bits
      M.append("1"); //add "1" bit to end of string
-     for(int i=0; i<k; i++)
+     String binL = "0" + Integer.toBinaryString(l);
+     //l + k + 1 + 64 is a multiple of 512   M.length()%512==0;
+     while(((l+1+k+8)%512)!=0)
+     {
        M.append("0");
-     
-     int difference = 512 - (l+1+k);
-     String binL = "0" + Integer.toBinaryString(l); //Binary Representation of int l w/ leading "0"
-     difference = difference - (binL.length());
-     for(int i = 0; i<difference; i++)
-       M.append("0");
+       k++;
+     }
      M.append(binL);
    }
    
-   public void parseMessage(StringBuffer M, String[] blocks)
+   public void parseMessage(StringBuffer M, int[] W)
    {
      for(int i =0; i<16; i++){
-       blocks[i] = M.substring(0, 32);
+       W[i] = Integer.parseInt(M.substring(0, 32), 2);
        M.delete(0,32);
+       
      }
    }
-   public void processHash(String[] blocks, String[] W)//blocks is the 16-word array, W is the array to be processed, NOTE: blocks must be 16-words
+   public void processHash(int[] W)//blocks is the 16-word array, W is the array to be processed, NOTE: blocks must be 16-words
    {
-     for(int i=0; i<16; i++)
-     {
-       W[i]=blocks[i];
-     }
      for(int i=16; i<64; i++)
      {
-       int binaryW = Integer.parseInt(W[i-15], 2);
+       int binaryW = W[i-15];
        int s0 = delta0(binaryW);
-       binaryW = Integer.parseInt(W[i-2], 2);
+       binaryW = W[i-2];
        int s1 = delta1(binaryW);
-       int sum = s0 + (Integer.parseInt(W[i-16], 2)) + s1 + (Integer.parseInt(W[i-7], 2));
-       W[i] = Integer.toBinaryString(sum);
+       int sum = s0 + W[i-16] + s1 + W[i-7];
+       W[i] = sum;
      }
    }
-   public void compressionFunction(int[] initH, String[] W)
+   public void compressionFunction(int[] W)
    {
      int a = initH[0];
      int b = initH[1];
@@ -88,7 +94,7 @@ public class SHA2 extends EncryptionFundamental
      {
        int S1 = sigma1(e);
        int intCh = Ch(e, f, g);
-       int t1 = h + S1 + intCh + K[i] + (Integer.parseInt(W[i], 2));
+       int t1 = h + S1 + intCh + K[i] + W[i];
        int S0 = sigma0(a);
        int intMaj = Maj(a, b, c);
        int t2 = S0+intMaj;
@@ -112,9 +118,9 @@ public class SHA2 extends EncryptionFundamental
       initH[7]= initH[7] + h;      
    }    
    
-   public void generateDigest(int[] initH, StringBuffer digest)
+   public void generateDigest()
    {
-     for(int i = 0; i<initH.length; i++)
+     for(int i = 0; i<8; i++)
      {
        digest.append(Integer.toHexString(initH[i]));
      }
@@ -124,7 +130,7 @@ public class SHA2 extends EncryptionFundamental
    {
      System.out.println("Message Bit Length: " + M.length());
    }
-   public void debugArray(String[] blocks)
+   public void debugArray(byte[] blocks)
    {
      for(int i = 0; i<blocks.length; i++){
        System.out.print("Block "+i+": ");
@@ -187,6 +193,3 @@ public class SHA2 extends EncryptionFundamental
      initH[7] = 0x5be0cd19;
    }
 }
-     
-     
-     
