@@ -31,8 +31,14 @@ public abstract class EncryptionFundamental
    byte[] bytes = message.getBytes();
         StringBuffer test = new StringBuffer();
         for(int i = 0; i<bytes.length; i++){
-            test.append("0");
-            test.append(Integer.toBinaryString(bytes[i]));
+            StringBuffer temp = new StringBuffer();
+            temp.append(Integer.toBinaryString(bytes[i]));
+            while(temp.length()!=8)
+            {
+              temp.insert(0, "0");
+            }
+            test.append(temp);
+            temp.delete(0, temp.length());
         }
         return(test.toString());
  }
