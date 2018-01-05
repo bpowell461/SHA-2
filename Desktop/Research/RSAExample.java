@@ -6,20 +6,17 @@ public class RSAExample
 {
   public static void main(String[] args)
   {
-    RSACipher RSA = new RSACipher();
+    RSACipher Bob = new RSACipher();
+    RSACipher Alice = new RSACipher();
     Scanner stdin = new Scanner(System.in);
-    System.out.print("Message to Encrypt: ");
+    System.out.print("Message to Encrypt: "); //Bob encrypts message for Alice using Alice's public key
     String testMessage = stdin.nextLine();
-    BigInteger message = RSA.encrpyt(testMessage);
-    System.out.println("\nMessage encrypted: '"+testMessage+"'");
-    System.out.println("\nEncrpyted");
-    System.out.println("--------------\n");
-    System.out.println(message);
+    BigInteger message = Bob.encrpyt(testMessage, Alice.getPublicExp(), Alice.getModulus()); 
     uploadData(message, "EncryptedData.dat");
-    String decryptedMessage = RSA.decrypt(downloadData("EncryptedData.dat"));
-    System.out.println("\nDecrypted");
-    System.out.println("--------------\n");
-    System.out.println(decryptedMessage);
+    
+    BigInteger deMessage = downloadData("EncryptedData.dat");
+    String newMsg = Alice.decrypt(deMessage, Alice.getPrivateExp(), Alice.getModulus()); //Alice decrypts Bob's message using private key
+    System.out.println("Decrypted Data: "+newMsg);
   }
   private static BigInteger downloadData(String fileName)
     {
