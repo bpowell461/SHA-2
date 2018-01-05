@@ -31,7 +31,7 @@ public class SHA2 extends EncryptionFundamental
        M.delete(0, 512);
      }
      
-     int[] W = new int[64];
+     long[] W = new long[64];
      
      for(int i=0; i<chunks.length; i++)
      {
@@ -50,8 +50,9 @@ public class SHA2 extends EncryptionFundamental
      int k=0; //K 0 bits
      M.append("1"); //add "1" bit to end of string
      String binL = "0" + Integer.toBinaryString(l);
+     
      //l + k + 1 + 64 is a multiple of 512   M.length()%512==0;
-     while(binL.length()!=64) //binL must be a 64-bit Big Endian Number
+     while(binL.length()!=64)
      {
        binL = "0" + binL;
      }
@@ -63,27 +64,27 @@ public class SHA2 extends EncryptionFundamental
      M.append(binL);
    }
    
-   public void parseMessage(StringBuffer M, int[] W)
+   public void parseMessage(StringBuffer M, long[] W)
    {
      for(int i =0; i<16; i++){
-       W[i] = Integer.parseInt(M.substring(0, 32), 2);
+       W[i] = Long.parseLong(M.substring(0, 32), 2);
        M.delete(0,32);
        
      }
    }
-   public void processHash(int[] W)//blocks is the 16-word array, W is the array to be processed, NOTE: blocks must be 16-words
+   public void processHash(long[] W)//blocks is the 16-word array, W is the array to be processed, NOTE: blocks must be 16-words
    {
      for(int i=16; i<64; i++)
      {
-       int binaryW = W[i-15];
+       int binaryW = (int) W[i-15];
        int s0 = delta0(binaryW);
-       binaryW = W[i-2];
+       binaryW = (int) W[i-2];
        int s1 = delta1(binaryW);
-       int sum = s0 + W[i-16] + s1 + W[i-7];
+       int sum = s0 + (int) W[i-16] + s1 + (int) W[i-7];
        W[i] = sum;
      }
    }
-   public void compressionFunction(int[] W)
+   public void compressionFunction(long[] W)
    {
      int a = initH[0];
      int b = initH[1];
@@ -98,7 +99,7 @@ public class SHA2 extends EncryptionFundamental
      {
        int S1 = sigma1(e);
        int intCh = Ch(e, f, g);
-       int t1 = h + S1 + intCh + K[i] + W[i];
+       long t1 = h + S1 + intCh + K[i] + W[i];
        int S0 = sigma0(a);
        int intMaj = Maj(a, b, c);
        int t2 = S0+intMaj;
@@ -106,11 +107,11 @@ public class SHA2 extends EncryptionFundamental
        h = g;
        g = f;
        f = e;
-       e = d + t1;
+       e = d + (int)t1;
        d = c;
        c = b;
        b = a;
-       a = t1 + t2;
+       a = (int) t1 + t2;
      }    
       initH[0]= initH[0] + a;
       initH[1]= initH[1] + b;
@@ -185,7 +186,7 @@ public class SHA2 extends EncryptionFundamental
     {
       return("SHA-256 Hash = " + digest.toString());
     }
-    private void resetHash()  //Resetting Initial Hashes
+    private void resetHash()
     {
      initH[0] = 0x6a09e667;
      initH[1] = 0xbb67ae85;
@@ -197,3 +198,6 @@ public class SHA2 extends EncryptionFundamental
      initH[7] = 0x5be0cd19;
    }
 }
+     
+     
+     
