@@ -186,7 +186,7 @@ public class SHA2 extends EncryptionFundamental
     {
       return("SHA-256 Hash = " + digest.toString());
     }
-    private void resetHash()
+    private void resetHash() //Resets Initial Hashes
     {
      initH[0] = 0x6a09e667;
      initH[1] = 0xbb67ae85;
