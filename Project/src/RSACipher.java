@@ -3,13 +3,14 @@ import java.math.BigInteger;
 
 public class RSACipher extends EncryptionFundamental
 {
- private int keyLength = 1024;
+ //private int keyLength = 1024; //Max Key length
+ private int keyLength;
  private BigInteger n;
  private BigInteger phi;
  private BigInteger e; 
  private BigInteger p, q, d;
  
-  public RSACipher()
+  public RSACipher(int keyLength) //1024 - 4096
   {
     generateKeys(keyLength);
   }
