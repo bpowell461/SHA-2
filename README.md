@@ -1,7 +1,9 @@
 # Encryption Research Project
 
 ##   Abstract 
-  The purpose of this project was to develop three encryption algorithms and test each one in different categories. Under the guidance of Dr. Andy Digh, the algorithms selected were: **RSA**, **SHA-256**, and **RC4**. The source code was written for each algorithm with only utilities classes imported for use. Each algorithm was then tested and rated in three categories: *Efficiency*, *Security*, and *Complexity*. *Note: All source code is written in Java.*
+  The purpose of this project was to develop three encryption algorithms and test each one in different categories. Under the guidance of Dr. Andy Digh, the algorithms selected were: **RSA**, **SHA-256**, and **RC4**. The source code was written for each algorithm with only utilities classes imported for use. Each algorithm was then tested and rated in three categories: *Efficiency*, *Security*, and *Complexity*. 
+  
+  *Note: All source code is written in Java.*
   
 ##  Encryption Algorithms
 Encryption Algorithms can be divided into three types: Asymmetric, Symmetric, and Hash Functions. 
