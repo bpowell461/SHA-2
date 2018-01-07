@@ -202,7 +202,7 @@ public class Blowfish extends EncryptionFundamental
      {
        binaryInput.insert(0, "0");
      }
-     String[] blocks = new String[binaryInput.length()%64];
+     String[] blocks = new String[binaryInput.length()/64];
      
      for(int i=0; i<blocks.length; i++)
      {
@@ -261,7 +261,7 @@ public class Blowfish extends EncryptionFundamental
      {
        binaryInput.insert(0, "0");
      }
-     String[] blocks = new String[binaryInput.length()%64];
+     String[] blocks = new String[binaryInput.length()/64];
      
      for(int i=0; i<blocks.length; i++)
      {
