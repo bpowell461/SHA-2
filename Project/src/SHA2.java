@@ -118,7 +118,7 @@ public class SHA2 extends EncryptionFundamental
       initH[7]= initH[7] + h;      
    }    
    
-   public void generateDigest()
+   public void generateDigest() //Generates Hash
    {
      //digest.delete(0, digest.length()); //Clears digest
      for(int i = 0; i<8; i++)
