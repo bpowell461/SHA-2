@@ -1,7 +1,7 @@
 public class RC4 extends EncryptionFundamental
 {
 	private int[] S; //S-Box of all possible bytes
-	private int[] T;
+	private int[] T; //
 	private final int MAX_SIZE = 256;
  
 	public RC4(String input)
