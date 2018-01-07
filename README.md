@@ -42,3 +42,17 @@ The SHA-2 algorithm, or the Secure Hash Algorithm 2, is a hash function develope
   * The word is then added to the initial hashes and formed into a hash digest.
   
  The SHA-2 algorithm is most notably used in BitCoin as a 'proof-of-work'.
+ 
+## Testing
+The testing categories were divided into three seperate categories: *Efficiency*, *Security*, and *Complexity*.
+
+### Efficiency
+The efficiency of a program will refer to the speed of the program at a certain input size. Algorithms with a faster execution time performed on larger data will score higher in the efficiency category.
+
+### Security
+Security refers to the possibility that the algorithm can be broken. Algorithms that take longer to break or have a lower chance of being broken will score higher in the security category.
+
+### Complexity
+Complexity refers to the simpleness of the algorithm. Note that a program that has fewer lines of code does not mean that it is less complex. Simple algorithms will score higher in the complexity category.
+
+## Results
