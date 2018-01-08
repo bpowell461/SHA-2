@@ -71,3 +71,7 @@ Each algorithm was then given a rating which can be found [here] (Project/Test R
 ## Conclusion
  After rating each algorithm, the RC4 algorithm scored highest with a score of 21 out 30. Although RC4 did not score high in the Security category, the algorithm's insecurites can be combatted by properly implementing the algorithm and creating a strong key. RSA did not score higher than the RC4 because of its slow operation times added with the fact that RSA cannot encrypt large data amounts at all. While SHA-256 is very efficient, it did not score higher because of it's complexity in implementation and lack of decryption. As the future of encryption progresses, encryption and decrpytion with a hash function might be possible.
 
+## BlowFish Implementation
+I attempted to implement the BlowFish algorithm in java, which proved to be very difficult. It can be found in /Desktop/Research/Blowfish.java
+
+The source code was not encrypting and decrypting correctly. I attempted to implement Blowfish before RC4, which gave me insight into the process of asymmetric encryption.
