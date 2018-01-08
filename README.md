@@ -56,4 +56,18 @@ Security refers to the possibility that the algorithm can be broken. Algorithms 
 Complexity refers to the simpleness of the algorithm. Note that a program that has fewer lines of code does not mean that it is less complex. Simple algorithms will score higher in the complexity category.
 
 ## Results
-Results for the Efficiency Test are found [here](Encryption-Research/Project/Test Results.xlsx)
+Results for the Efficiency Test are found [here] (Project/Test Results.xlsx)
+
+After analyzing the times in the Efficiency Test, it was determined that SHA-256 was the most efficient algorithm due to its fast encrypting power with large data amounts.
+
+The Complexity Test was conducted by analyzing the number of mathematical operations in the operation and the number of code lines needed to implement the algorithm. 
+
+After analyzing each source code, it was determined that the RC4 algorithm is the least complex due to its need for only two methods(encryption method and key generation method).
+
+The Security Test was conducted by researching the number of known attacks on the algorithm. SHA-256 and RSA tied because of the current no known attacks on a properly implemented algorithm.
+
+Each algorithm was then given a rating which can be found [here] (Project/Test Ratings.xlsx).
+
+## Conclusion
+
+
