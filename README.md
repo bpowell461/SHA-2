@@ -69,5 +69,5 @@ The Security Test was conducted by researching the number of known attacks on th
 Each algorithm was then given a rating which can be found [here] (Project/Test Ratings.xlsx).
 
 ## Conclusion
-
+ After rating each algorithm, the RC4 algorithm scored highest with a score of 21 out 30. Although RC4 did not score high in the Security category, the algorithm's insecurites can be combatted by properly implementing the algorithm and creating a strong key. RSA did not score higher than the RC4 because of its slow operation times added with the fact that RSA cannot encrypt large data amounts at all. While SHA-256 is very efficient, it did not score higher because of it's complexity in implementation and lack of decryption. As the future of encryption progresses, encryption and decrpytion with a hash function might be possible.
 
