@@ -277,8 +277,8 @@ public class Blowfish extends EncryptionFundamental
        L = Integer.parseInt(blocks[i].substring(0, 32), 2);
        R = Integer.parseInt(blocks[1].substring(33, 64), 2);
        de(L, R);
-       dec.append(Integer.toHexString(L));
-       dec.append(Integer.toHexString(R));
+       dec.append(HexToString(L));
+       dec.append(HexToString(R));
        //dec.append(" "); //Breaks every 64-Bits
      }
      reset();
