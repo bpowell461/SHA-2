@@ -1,7 +1,7 @@
 # Encryption Research Project
 
 ##   Abstract 
-  The purpose of this project was to develop three encryption algorithms and test each one in different categories. Under the guidance of Dr. Andy Digh, the algorithms selected were: **RSA**, **SHA-256**, and **RC4**. The source code was written for each algorithm with only utilities classes imported for use. Each algorithm was then tested and rated in three categories: *Efficiency*, *Security*, and *Complexity*. 
+  The purpose of this project was to develop two encryption algorithms and one hashing algorithm then test each one in different categories. Under the guidance of Dr. Andy Digh, the algorithms selected were: **RSA**, **SHA-256**, and **RC4**. The source code was written for each algorithm with only utilities classes imported for use. Each algorithm was then tested and rated in three categories: *Efficiency*, *Security*, and *Complexity*. 
   
   *Note: All source code is written in Java.*
   
@@ -10,9 +10,7 @@ Encryption Algorithms can be divided into three types: Asymmetric, Symmetric, an
 
  Asymmetric encryption, or public-key cryptography, uses a public and private key to encrypt and decrypt data. The keys used are numbers that are not identical to each other. As the name suggests, the public key is given to the public to encrypt data and the private is kept private to decrypt data.
 
- Symmetric encryption uses one private key to encrypt and decrypt data. The same key that is used to encrpyt data is also used to decrypt data. All keys in symmetric encryption are kept private.
-
- Hash Functions use no keys, instead they take a word or number and perform a hashing function in order to fix the data to an encrypted fixed size. The data in hash functions can not be decrypted, therefore hash functions are used to ensure that data has not been intercepted. 
+ Symmetric encryption uses one private key to encrypt and decrypt data. The same key that is used to encrpyt data is also used to decrypt data. All keys in symmetric encryption are kept private. 
 
 ### RSA
   The RSA algorithm, or Rivest–Shamir–Adleman  algorithm, was developed in 1977 and is one of the first asymmetric encryption algorithms used for cryptography. Although the algorithm is older, the RSA encryption algorithm still remains fairly secure. The RSA algorithm works as follows:
@@ -32,7 +30,10 @@ RSA is used mostly in 'https:' or sites that exchange personal information.
   * To decrypt the data, the user xors the bits of the encrypted message with the keystream. 
   
  RC4 is used mostly in WEP security for WiFi and in many banking systems.
-  
+ 
+##  Hashing Algorithms
+Hash Functions use no keys, instead they take a word or number and perform a hashing function in order to fix the data to an encrypted fixed size. The data in hash functions can not be decrypted, therefore hash functions are used to ensure that data has not been intercepted.
+
 ### SHA-256
 The SHA-2 algorithm, or the Secure Hash Algorithm 2, is a hash function developed by the NSA in 2001. The algorithm is the successor to SHA-1 and is used to verify data integrity. SHA-2 currently has six different methods SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, and SHA-512/256. The SHA-2 algorith works as follows:
   * Eight initial hashes are created by the first 32-bits of the first eight prime numbers
@@ -58,7 +59,7 @@ Complexity refers to the simpleness of the algorithm. Note that a program that h
 ## Results
 Results for the Efficiency Test are found [here] (Project/Test Results.xlsx)
 
-After analyzing the times in the Efficiency Test, it was determined that SHA-256 was the most efficient algorithm due to its fast encrypting power with large data amounts.
+After analyzing the times in the Efficiency Test, it was determined that SHA-256 was the most efficient algorithm due to its fast hashing power with large data amounts.
 
 The Complexity Test was conducted by analyzing the number of mathematical operations in the operation and the number of code lines needed to implement the algorithm. 
 
